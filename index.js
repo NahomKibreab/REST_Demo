@@ -32,6 +32,16 @@ app.get('/comments', (req, res) => {
   res.render('comments/index', { comments });
 });
 
+app.get('/comments/new', (req, res) => {
+  res.render('comments/new');
+});
+
+app.post('/comments', (req, res) => {
+  const { username, comment } = req.body;
+  comments.push({ username, comment });
+  res.send('It worked!');
+});
+
 app.get('/tacos', (req, res) => {
   const { meat, qty } = req.query;
   res.send(`You selected ${qty} ${meat} tacos`);
