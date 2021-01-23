@@ -56,6 +56,14 @@ app.get('/comments/:id', (req, res) => {
   res.render('comments/show', { comment });
 });
 
+app.patch('/comments/:id', (req, res) => {
+  const { id } = req.params;
+  const foundComment = comments.find((c) => c.id === id);
+  const newCommentText = req.body.comment;
+  foundComment.comment = newCommentText;
+  res.redirect('/comments');
+});
+
 app.get('/tacos', (req, res) => {
   const { meat, qty } = req.query;
   res.send(`You selected ${qty} ${meat} tacos`);
